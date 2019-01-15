@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import re
 #набор символов для замены
 symb_dict = {
@@ -14,8 +14,11 @@ symb_dict = {
         'ў':'җ',
         'і':'h',
         'І':'h',
+        #убираем неадекватное деление на абзацы
         '-\n':'',
         '\.\n':'.КОНЕЦ_АБЗАЦА.',
+        '\n':' ',
+        '.КОНЕЦ_АБЗАЦА.':'.\n',     
         }
 
 #превращаем словарь с набором символов в два списка символов
@@ -32,11 +35,11 @@ with open ('text.txt',  encoding='utf-8') as f:
         for i in range (number_of_symbols):
                 the_text = re.sub(orig_sym[i], repl_sym[i], the_text)
                 
-#убираем неадекватное деление на абзацы - удаляем переносы строк,
-#а '.КОНЕЦ_АБЗАЦА.' меняем на перенос \n
-the_text = re.sub('\n', ' ', the_text)
-the_text = re.sub('.КОНЕЦ_АБЗАЦА.', '.\n', the_text)
+
+#the_text = re.sub('\n', ' ', the_text)
+#the_text = re.sub('.КОНЕЦ_АБЗАЦА.', '.\n', the_text)
 
 #открываем файл снова, теперь уже для записи нашего преобразованного текста
 with open ('text.txt', 'w', encoding='utf-8') as f:
 		f.write(the_text)
+print ('ВСЁ ОК. ВАШ ФАЙЛ ПРЕОБРАЗОВАН.')
