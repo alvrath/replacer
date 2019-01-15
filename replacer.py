@@ -35,10 +35,6 @@ with open ('text.txt',  encoding='utf-8') as f:
         for i in range (number_of_symbols):
                 the_text = re.sub(orig_sym[i], repl_sym[i], the_text)
                 
-
-#the_text = re.sub('\n', ' ', the_text)
-#the_text = re.sub('.КОНЕЦ_АБЗАЦА.', '.\n', the_text)
-
 #открываем файл снова, теперь уже для записи нашего преобразованного текста
 with open ('text.txt', 'w', encoding='utf-8') as f:
 		f.write(the_text)
